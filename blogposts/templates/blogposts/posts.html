@@ -12,7 +12,9 @@
 	{% empty %}
 	<li>No posts yet</li>
 	{% endfor %}
-	
 </ul>
+<p>
+<a href="{% url 'blogposts:new_post' %}">Add a new post</a>
+</p>
 
 {% endblock content %}

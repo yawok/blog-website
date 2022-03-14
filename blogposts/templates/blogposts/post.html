@@ -6,5 +6,7 @@
 <p>{{ title }}</p>
 <h6>{{ title.date|date:"M d, Y H:i" }}</h6>
 <p>{{ content|linebreaks }}</p>
-
+<p>
+	<a href="{% url 'blogposts:edit_post' title.id %}">Edit post</a>
+</p>
 {% endblock content %}
