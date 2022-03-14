@@ -1,0 +1,10 @@
+{% extends "blogposts/base.html" %}
+
+
+{% block content %}
+
+<p>{{ title }}</p>
+<h6>{{ title.date|date:"M d, Y H:i" }}</h6>
+<p>{{ content|linebreaks }}</p>
+
+{% endblock content %}
