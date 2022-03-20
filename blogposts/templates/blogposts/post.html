@@ -6,6 +6,11 @@
 <p>{{ title }}</p>
 <h6>{{ title.date|date:"M d, Y H:i" }}</h6>
 <p>{{ content|linebreaks }}</p>
+{% if owner != user %}
+	<h6>Post by: {{ title.owner }}.</h6>
+{% else %}
+<h6>Post by: you.</h6>
+{% endif %}
 <p>
 	<a href="{% url 'blogposts:edit_post' title.id %}">Edit post</a>
 </p>

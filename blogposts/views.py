@@ -20,7 +20,7 @@ def post(request, post_id):
     """Page to display content of a post."""
     title = Post.objects.get(id=post_id)
     content = title.post
-    context = {"title": title, "content": content}
+    context = {"title": title, "content": content, "user": request.user, "owner": title.owner}
     return render(request, "blogposts/post.html", context)
 
 
@@ -31,11 +31,12 @@ def new_post(request):
         #No data submitted; create a blank form.
         form = PostForm()
     else:
-        check_post_owner(request, title)
         #POST data submitted; process date
         form = PostForm(data=request.POST)
         if form.is_valid():
-            form.save()
+            new_post = form.save(commit=False)
+            new_post.owner = request.user
+            new_post.save()
             return redirect("blogposts:posts")
 
     #Display a blank for invalid form.
