@@ -128,4 +128,4 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 #My settings
-LOGIN_URL = "user:login"
+LOGIN_URL = "users:login"

@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
+from django.http import Http404
 
 from .models import Post
 from .forms import PostForm
@@ -30,6 +31,7 @@ def new_post(request):
         #No data submitted; create a blank form.
         form = PostForm()
     else:
+        check_post_owner(request, title)
         #POST data submitted; process date
         form = PostForm(data=request.POST)
         if form.is_valid():
@@ -52,6 +54,8 @@ def edit_post(request, title_id):
         form = PostForm(instance=title)
     else:
         #POST data submitted; process data.
+        
+        check_post_owner(request, title)
         form = PostForm(instance=title, data=request.POST)
         if form.is_valid():
             form.save()
@@ -59,3 +63,9 @@ def edit_post(request, title_id):
 
     context = {"title": title, "content": content, "form": form}
     return render(request, "blogposts/edit_post.html", context)
+
+
+def check_post_owner(request, title):
+    """Restricts page to only owners."""
+    if request.user != title.owner:
+        raise Http404
