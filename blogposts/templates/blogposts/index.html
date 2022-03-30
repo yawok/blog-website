@@ -1,6 +1,21 @@
 {% extends "blogposts/base.html" %}
 
+{% block page_header %}
+	<div class="jumbotron">
+		<h1 class="display-3">Read and be read.</h1>
 
-{% block content %}
-<p>Blog Posts is a website that allows users to post blogs for others to read.</p>
-{% endblock content %}
+		<p class="lead">Make posts about anything at all and read post 
+		posts about anything at all. Just post for others to read and 
+		read what others have posted.</p>
+
+		{% if not user.is_authenticated %}
+			<a class="btn btn-lg btn-primary" href="{% url 'users:register' %}"
+				role="button">Resigter &raquo;</a>
+		{% else %}
+			<a class="btn btn-lg btn-primary" href="{% url 'blogposts:posts' %}"
+				role="button">Read &raquo;</a>
+		{% endif %}
+
+	</div>
+{% endblock page_header %}
+
