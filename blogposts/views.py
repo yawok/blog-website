@@ -11,8 +11,8 @@ def index(request):
 
 def posts(request):
     """Page to display all the posts."""
-    posts = Post.objects.order_by("date")
-    context = {"posts": posts}
+    title = Post.objects.order_by("date")
+    context = {"title": title, "user": request.user}
     return render(request, "blogposts/posts.html", context)
 
 
