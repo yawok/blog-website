@@ -6,16 +6,21 @@
 	<div class="card mb-3">
 		<h3 class="card-header"> {{ title }}</h3>
 		<div class="card-body">
-			<h6>{{ title.date|date:"M d, Y H:i" }}</h6>
-			<hr>
 			<p>{{ content|linebreaks }}</p>
-			<hr>
+		</div>
+		<div class="card-footer text-muted text-center">
+			<small>
+			<strong>
 			{% if owner != user %}
-				<h6>Post by: {{ title.owner }}.</h6>
+				Post by: {{ title.owner }}.
 			{% else %}
-				<h6>Post by: you.</h6>
+				Post by: you.
 				<a href="{% url 'blogposts:edit_post' title.id %}">Edit post</a>
 			{% endif %}
+			</strong>
+			<p>{{ title.date|date:"M d, Y H:i" }}</p>
+			</small>
+
 		</div>
 	</div>
 

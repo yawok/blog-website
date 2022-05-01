@@ -8,20 +8,26 @@
 {% block content %}
 	{% for title in title %}
 		<div class="card mb-3">
-			<h4 class="card-header">
-				{{ title }}
-				<small>
-
-					<a href="{% url 'blogposts:edit_post' title.id %}">
-						edit post</a>
-				</small>
-			</h4>
+			<div class="card-header">
+				<h4>
+					<a href="{% url 'blogposts:post' title.id %}">{{ title }}</a>
+				</h4>
+				{% if title.owner == user %}
+					<small>
+						<a href="{% url 'blogposts:edit_post' title.id %}">
+							edit post</a>
+					</small>
+				{% endif%}
+			</div>
 			<div class="card-body">
 				<h6>{{ title.date|date:'M d, Y H:i' }}</h6>
-				{{ title.post|linebreaks }}
+				{{ title.post|truncatechars:150 }}
 			</div>
 		</div>
 	{% empty %}
 		<li><h3>No posts yet</h3></li>
 	{% endfor %}
+	{% if user.is_authenticated %}
+		<a href="{% url 'blogposts:new_post' %}">Add post</a>
+	{% endif %}
 {% endblock content %}
