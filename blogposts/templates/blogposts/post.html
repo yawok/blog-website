@@ -3,15 +3,23 @@
 
 {% block content %}
 
-<p>{{ title }}</p>
-<h6>{{ title.date|date:"M d, Y H:i" }}</h6>
-<p>{{ content|linebreaks }}</p>
-{% if owner != user %}
-	<h6>Post by: {{ title.owner }}.</h6>
-{% else %}
-<h6>Post by: you.</h6>
-{% endif %}
-<p>
-	<a href="{% url 'blogposts:edit_post' title.id %}">Edit post</a>
-</p>
+	<div class="card mb-3">
+		<h3 class="card-header"> {{ title }}</h3>
+		<div class="card-body">
+			<h6>{{ title.date|date:"M d, Y H:i" }}</h6>
+			<hr>
+			<p>{{ content|linebreaks }}</p>
+			<hr>
+			{% if owner != user %}
+				<h6>Post by: {{ title.owner }}.</h6>
+			{% else %}
+				<h6>Post by: you.</h6>
+				<a href="{% url 'blogposts:edit_post' title.id %}">Edit post</a>
+			{% endif %}
+		</div>
+	</div>
+
 {% endblock content %}
+
+
+
