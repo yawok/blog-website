@@ -7,7 +7,9 @@ from .forms import PostForm
 
 def index(request):
     """The home page"""
-    return render(request, "blogposts/index.html")
+    title = Post.objects.order_by("-date")
+    context = {"title": title}
+    return render(request, "blogposts/index.html", context)
 
 def posts(request):
     """Page to display all the posts."""
