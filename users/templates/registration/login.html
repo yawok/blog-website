@@ -20,4 +20,7 @@
 		<input type="hidden" name="next"
 			value="{% url 'blogposts:index' %}" />
 	</form>
+	<p>
+		Don't have a account? <a href="{% url 'users:register'%}">Register</a>.
+	</p>
 {% endblock content %}

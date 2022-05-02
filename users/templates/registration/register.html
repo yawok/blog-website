@@ -14,4 +14,7 @@
 		{% endbuttons %}
 		<input type="hidden" name="next" value="{% url 'blogposts:index' %}" />
 	</form>
+	<p>
+		Already have a account? <a href="{% url 'users:login'%}">Login</a>.
+	</p>
 {% endblock content %}
