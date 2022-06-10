@@ -21,8 +21,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config("SECRET_KEY")
-
+SECRET_KEY = 'django-insecure-kv0qx+6$gnyf@1ly=zfzi6pl^a)g7-mh7fq7e^6ii43jxur8+@'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -139,9 +138,4 @@ import django_on_heroku
 django_on_heroku.settings(locals())
 
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATIC_URL = '/static/'
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
-)
+
